@@ -3,8 +3,13 @@ package com.anjastanojevic.server;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 @Path("/book")
 public class BookResource {
@@ -27,19 +32,31 @@ public class BookResource {
     @Consumes (MediaType.APPLICATION_JSON)
     public Response addBook(Book book){
 
-        for (Book book1 : books) {
-            if(book1.getIsbn().equals(book.getIsbn())){
-                return Response.status(400).build();
-            }
-        }
+        String url = "jdbc:postgresql://localhost/postgres";
+        Properties props = new Properties();
+        props.setProperty("user","postgres");
+        props.setProperty("password","postgres");
 
-        books.add(book);
+        try {
+            Connection conn = DriverManager.getConnection(url, props);
+            PreparedStatement statement = conn.prepareStatement("insert into book (title,authors,pages,genre,isbn) values (?,?,?,?,?);");
+            statement.setString(1,book.getTitle());
+
+            String authors = String.join(",",book.getAuthors());
+            statement.setString(2,authors);
+
+            statement.setInt(3,book.getNumberOfPages());
+            statement.setString(4,book.getGenre());
+            statement.setString(5,book.getIsbn());
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("dodata je: " +book);
 
-        for (Book book1 : books) {
-            System.out.println(book1 + "\n");
-        }
         return Response.accepted().build();
     }
 }
