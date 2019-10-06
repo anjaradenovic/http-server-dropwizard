@@ -1,43 +1,42 @@
 package com.anjastanojevic.server;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.dropwizard.Configuration;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Configuration extends io.dropwizard.Configuration {
 
     @NotEmpty
-    private String message;
+    private String databaseUrl;
 
     @NotEmpty
-    private String firstParameter;
+    private String username;
 
     @NotEmpty
-    private String secondParameter;
+    private String password;
 
     @JsonProperty
-    public String getMessage() {
-        return message;
+    public String getDatabaseUrl() {
+        return databaseUrl;
     }
 
     @JsonProperty
-    public void setMessage(String message) {
-        this.message = message;
+    public void setDatabaseUrl(String databaseUrl) {
+        this.databaseUrl = databaseUrl;
     }
 
-    public String getFirstParameter() {
-        return firstParameter;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstParameter(String firstParameter) {
-        this.firstParameter = firstParameter;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getSecondParameter() {
-        return secondParameter;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSecondParameter(String secondParameter) {
-        this.secondParameter = secondParameter;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
