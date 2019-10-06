@@ -1,12 +1,11 @@
 package com.anjastanojevic.server;
 
-import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 
-public class DemoApplication extends Application<DemoConfiguration> {
+public class Application extends io.dropwizard.Application<Configuration> {
 
     @Override
-    public void run(DemoConfiguration configuration, Environment environment) {
+    public void run(Configuration configuration, Environment environment) {
 
         final BookResource bookResource = new BookResource();
         environment.jersey().register(bookResource);
