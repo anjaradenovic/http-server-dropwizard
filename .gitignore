@@ -1,2 +1,5 @@
 target
 .idea/
+client.iml
+server.iml
+dependency-reduced-pom.xml

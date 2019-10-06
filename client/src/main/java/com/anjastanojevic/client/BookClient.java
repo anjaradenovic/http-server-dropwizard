@@ -1,7 +1,6 @@
 package com.anjastanojevic.client;
 
-import com.anjastanojevic.server.Book;
-
+import com.anjastanojevic.client.Book;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;

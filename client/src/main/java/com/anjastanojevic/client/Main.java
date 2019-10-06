@@ -1,7 +1,5 @@
 package com.anjastanojevic.client;
 
-import com.anjastanojevic.server.Book;
-
 public class Main {
     public static void main(String[] args) {
         BookClient bookClient = new BookClient();
