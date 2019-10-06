@@ -25,7 +25,13 @@ public class BookResource {
 
     @POST
     @Consumes (MediaType.APPLICATION_JSON)
-    public void addBook(Book book){
+    public Response addBook(Book book){
+
+        for (Book book1 : books) {
+            if(book1.getIsbn().equals(book.getIsbn())){
+                return Response.status(400).build();
+            }
+        }
 
         books.add(book);
 
@@ -34,5 +40,6 @@ public class BookResource {
         for (Book book1 : books) {
             System.out.println(book1 + "\n");
         }
+        return Response.accepted().build();
     }
 }
