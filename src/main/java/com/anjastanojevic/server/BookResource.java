@@ -2,7 +2,7 @@ package com.anjastanojevic.server;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.awt.*;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +13,14 @@ public class BookResource {
 
     @GET
     @Produces (MediaType.APPLICATION_JSON)
-    public Book bookInfo(){
+    public Response bookInfo(@QueryParam("isbn") String requestedIsbn){
 
-        List<String> authors = new ArrayList<>();
-        authors.add("Stiven King");
-        Book book = new Book("Green mile",authors,326, "horror","978-86-10-02326-8");
-
-        return book;
+        for (Book book : books) {
+            if(book.getIsbn().equals(requestedIsbn)){
+                return Response.ok(book).build();
+            }
+        }
+        return Response.status(404).build();
     }
 
     @POST
