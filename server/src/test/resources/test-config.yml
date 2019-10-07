@@ -1,0 +1,3 @@
+databaseUrl: jdbc:postgresql://localhost/postgres
+username: postgres
+password: postgres
