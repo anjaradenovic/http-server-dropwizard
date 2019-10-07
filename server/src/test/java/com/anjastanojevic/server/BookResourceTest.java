@@ -6,6 +6,7 @@ import io.dropwizard.testing.junit.DropwizardAppRule;
 import org.junit.ClassRule;
 import org.junit.Test;
 
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.client.Client;
 
 import static junit.framework.TestCase.assertEquals;
@@ -32,5 +33,16 @@ public class BookResourceTest {
         assertEquals(book.getNumberOfPages(), 250);
         assertEquals(book.getTitle(), "Green mile");
         assertThat(book.getAuthors()).containsExactly("Steven King");
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void testGetNonExistingBook() {
+
+        Client client = new JerseyClientBuilder(RULE.getEnvironment()).build("test client");
+
+        client.target(
+                "http://localhost:8080/book?isbn=" + "non-existing-isbn")
+                .request()
+                .get(Book.class);
     }
 }
