@@ -37,7 +37,7 @@ public class BookResource {
 
             ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 String title = resultSet.getString("title");
 
                 String authorsAsString = resultSet.getString("authors");
