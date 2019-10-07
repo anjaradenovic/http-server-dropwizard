@@ -1,13 +1,25 @@
 package com.anjastanojevic.server;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.annotation.Nonnegative;
 import java.util.List;
 
 public class Book {
 
+    @NotEmpty
     private String title;
+
+    @NotEmpty
     private List<String> authors;
+
+    @Nonnegative
     private int numberOfPages;
+
+    @NotEmpty
     private String genre;
+
+    @NotEmpty
     private String isbn;
 
     public Book(String title, List<String> authors, int numberOfPages, String genre, String isbn) {
