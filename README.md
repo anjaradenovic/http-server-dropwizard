@@ -16,7 +16,7 @@ Run the following command in the root of the project
 ```
 mvn test
 ```
-Note: In order to run the tests, it is necessary to initialize the
+**Note**: In order to run the tests, it is necessary to initialize the
 PostgreSQL database using [db_init.sql](db_init.sql) script. Default
 configuration for the database is:
 - **username**: postgresql
@@ -26,3 +26,6 @@ configuration for the database is:
 These settings can be modified in the [config.yml](config.yml) and [test-config.yml](server/src/main/java/com/anjastanojevic/server/resources/test-config.yml)
 files.
 
+## How to run locally
+From the IDE, start the main class in server-module [Main.java](server/src/main/java/com/anjastanojevic/server/Main.java). 
+You can then run the main class in the client-module [Client.java](/client/src/main/java/com/anjastanojevic/client/Main.java).
